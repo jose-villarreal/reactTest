@@ -13,12 +13,12 @@ export const Profile = (props) => {
 
 		services.getUser(userParam, data => {
 
-			let user = {...JSON.parse(data), repos: []};
+			let user = {...data, repos: []};
 
 			services.getRepo(userParam, data => {
 
 				showProfile();
-				setSelectedUser({...user, repos: JSON.parse(data)});
+				setSelectedUser({...user, repos: data});
 
 			});
 

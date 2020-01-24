@@ -18,7 +18,7 @@ export default class Services {
 
 		fetch(url, options)
 		.then(res => res.text())
-		.then(data => callback(data))
+		.then(data => callback(JSON.parse(data)))
 		.catch(() => console.log('Can’t access response.'));
 
 	}
@@ -36,7 +36,20 @@ export default class Services {
 	}
 
 	getRepo (user, callback) {
+
 		this.fetchData(`${this.url}users/${user}/repos${this.queryParams}`,'GET',callback);
+
+	}
+
+	searchUser (searchParams, callback) {
+
+		let paramString = '';
+
+		for (let key in searchParams) paramString = `${paramString}&${key}=${searchParams[key]}`;
+		
+		this.fetchData(`${this.url}search/users${this.queryParams}${paramString}`,'GET',callback);
+
 	}
 
 }
+

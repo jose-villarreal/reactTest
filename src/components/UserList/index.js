@@ -9,7 +9,7 @@ export const UserList = (props) => {
 
 	const users = props.users.map((user, index) => {
 
-		const {avatar_url, login: username, type, html_url} = user;
+		const {avatar_url, login: username, type} = user;
 
 		return (
 			<Link to={ '/' + username } key={index}>

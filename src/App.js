@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Services from './Services';
 import { UserList } from './components/UserList';
 import { Profile } from './components/Profile';
+import { SearchInput } from './components/SearchInput';
 import {
 
   BrowserRouter as Router,
@@ -35,7 +36,7 @@ export const App = (props) => {
 
 		services.getUsers(data => {
 
-			setUsers(JSON.parse(data));
+			setUsers(data);
 
 		});
 
@@ -47,7 +48,9 @@ export const App = (props) => {
 
 			<div className="l-grid-main" onClick={hideProfile}>
 
-				<header className="nav-header"></header>
+				<header className="nav-header">
+					<SearchInput services={services}/>
+				</header>
 				<nav className="l-grid-main-nav nav-sidebar"></nav>
 				<main className={mainClass}>
 					<UserList users={users}/>
