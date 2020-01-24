@@ -125,6 +125,9 @@ MODULES
 
 	background-color: #fff;
 	border-bottom: 1px solid #d8d8d8;
+    padding: 22px 30px;
+    position: relative;
+
 }
 
 
@@ -238,6 +241,27 @@ MODULES
 
 } 
 
+.search-input {
+
+	min-width: 300px;
+	padding: 10px 15px;
+	border: none;
+	border-radius: 20px;
+	background-color: #efefef;
+	outline: none;
+
+}
+.search-list {
+
+	min-width: 300px;
+	padding: 20px;
+	position: absolute;
+	top: 60px;
+	background: white;
+	z-index: 1;
+
+}
+
 [class^="icon-"]:before, [class*=" icon-"]:before {
 
 	font-family: "fontello";
@@ -283,6 +307,12 @@ MODULES
 STATES
 
 ------------------------------------*/
+
+.is-hidden {
+
+	display: none;
+	
+}
 
 .is-two-columns {
 

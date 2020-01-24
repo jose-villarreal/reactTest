@@ -4,18 +4,21 @@ import { useParams } from "react-router-dom";
 
 export const Profile = (props) => {
 
-	const { user: userParam } = useParams();
+	const { user: currentParam } = useParams();
 	const { services, showProfile } = props;
+	const [userParam, setUserParam] = useState(currentParam); 
 	const [selectedUser, setSelectedUser] = useState(null);
+
+	if (currentParam !== userParam) setUserParam(currentParam);
+
 
 	useEffect(() => {
 
-
-		services.getUser(userParam, data => {
+		services.getUser(currentParam, data => {
 
 			let user = {...data, repos: []};
 
-			services.getRepo(userParam, data => {
+			services.getRepo(currentParam, data => {
 
 				showProfile();
 				setSelectedUser({...user, repos: data});
@@ -24,7 +27,9 @@ export const Profile = (props) => {
 
 		});
 
-	}, []);
+
+
+	},[userParam]);
 
 
 
