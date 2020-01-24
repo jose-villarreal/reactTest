@@ -108,6 +108,11 @@ LAYOUT
 
 }
 
+.l-float-left {
+
+	float: left;
+
+}
 
 /*------------------------------------
 
@@ -157,6 +162,15 @@ MODULES
 	width: 45%;
 	border-radius: 50%;
 	border: 3px solid #d8d8d8;
+
+}
+
+.card-image-sm {
+
+	width: 25px;
+    border-width: 1px;
+    margin-top: -5px;
+    margin-right: 10px;
 
 }
 
@@ -253,13 +267,40 @@ MODULES
 }
 .search-list {
 
+	max-height: 253px;
 	min-width: 300px;
-	padding: 20px;
+	border: 1px solid #d8d8d8;
+	border-radius: 5px;
 	position: absolute;
-	top: 60px;
+	top: 57px;
+	box-shadow: 0px 3px 10px #00000017;
 	background: white;
+	overflow-y: auto;
 	z-index: 1;
 
+}
+
+.search-list-item {
+
+	border-bottom: 1px solid #d8d8d8;
+	font-size: 13px;
+	list-style: none;
+	cursor: pointer;
+}
+
+.search-list-link {
+	
+    padding: 10px;
+    display: block;
+
+}
+
+.search-list-item:hover {
+	background-color: #d8d8d8;
+}
+
+.search-list-item:after {
+	clear: both;
 }
 
 [class^="icon-"]:before, [class*=" icon-"]:before {

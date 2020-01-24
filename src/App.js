@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Services from './Services';
 import { UserList } from './components/UserList';
 import { Profile } from './components/Profile';
@@ -16,21 +16,7 @@ const services = new Services ();
 export const App = (props) => {
 	
 	const [users, setUsers] = useState([]);
-	const [mainClass, setMainClass] = useState('');
-
-	
-
-	const hideProfile = () => {
-
-		setMainClass('');
-
-	};
-
-	const showProfile = () => {
-
-		setMainClass('is-two-columns');
-
-	};
+	const [isProfileHidden, setIsProfileHidden] = useState(true);
 
 	useEffect(() => {
 
@@ -42,20 +28,22 @@ export const App = (props) => {
 
 	},[]);
 
+
 	return(
 
 		<Router>
 
-			<div className="l-grid-main" onClick={hideProfile}>
+			<div className="l-grid-main" onClick={ () => setIsProfileHidden(true) }>
 
 				<header className="nav-header">
 					<SearchInput services={services}/>
 				</header>
 				<nav className="l-grid-main-nav nav-sidebar"></nav>
-				<main className={mainClass}>
+				<main className={ isProfileHidden ? '' : 'is-two-columns'}>
 					<UserList users={users}/>
 					<Switch>
-						<Route path="/:user" children={ <Profile services={services} showProfile= {showProfile}/> } />
+						<Route path="/:user" children={ <Profile services={services} isProfileHidden={isProfileHidden}
+						setIsProfileHidden={setIsProfileHidden}/> } />
 					</Switch>
 				</main>
 

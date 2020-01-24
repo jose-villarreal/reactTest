@@ -5,12 +5,11 @@ import { useParams } from "react-router-dom";
 export const Profile = (props) => {
 
 	const { user: currentParam } = useParams();
-	const { services, showProfile } = props;
-	const [userParam, setUserParam] = useState(currentParam); 
-	const [selectedUser, setSelectedUser] = useState(null);
+	const { services, setIsProfileHidden, isProfileHidden } = props;
+	const [ userParam, setUserParam ] = useState(currentParam); 
+	const [ selectedUser, setSelectedUser ] = useState(null);
 
 	if (currentParam !== userParam) setUserParam(currentParam);
-
 
 	useEffect(() => {
 
@@ -20,7 +19,7 @@ export const Profile = (props) => {
 
 			services.getRepo(currentParam, data => {
 
-				showProfile();
+				setIsProfileHidden(false);
 				setSelectedUser({...user, repos: data});
 
 			});
@@ -35,7 +34,7 @@ export const Profile = (props) => {
 
 	return (
 
-		<aside className="profile" onClick={e => e.stopPropagation()}>
+		<aside className={ isProfileHidden ? 'is-hidden' : 'profile'} onClick={e => e.stopPropagation()}>
 
 			{ selectedUser ? (
 
