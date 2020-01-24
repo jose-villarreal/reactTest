@@ -104,7 +104,7 @@ LAYOUT
 .l-aside-rows {
 
 	display: grid;
-	grid-template-rows: 280px 1fr;
+	grid-template-rows: 340px calc(100vh - 420px);
 
 }
 
@@ -210,7 +210,7 @@ MODULES
 
 .list-block {
 
-	height: 250px;
+	height: 100%;
 	overflow-y: scroll;
 	border-top: 1px solid #d8d8d8;
 
