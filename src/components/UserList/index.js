@@ -1,34 +1,30 @@
-import React from 'react';
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
 
 export const UserList = (props) => {
 
-	const users = props.users.map((user, index) => {
+	const { services, children } = props;
+	const [users, setUsers] = useState([]);
 
-		const {avatar_url, login: username, type} = user;
+	useEffect(() => {
 
-		return (
-			<Link to={ '/' + username } key={index}  onClick={e => e.stopPropagation()}>
-				<article className="card l-text-center">
-					<header>
-						<img className="card-image l-align-center" src={avatar_url} alt={username}></img>
-						<h2 className="card-title">
-							{username}
-						</h2>
-						<p className="tag">
-							{type}
-						</p>
-					</header>
-				</article>
-			</Link>
-		);
+		services.getUsers(data => {
 
-	});
+			setUsers(data);
+
+		});
+
+	},[]);
 
 	return(
 		
 		<div className="l-grid-list">
-			{users}
+
+			{
+				children({
+					users
+				})
+			}
+			
 		</div>
 
 	);

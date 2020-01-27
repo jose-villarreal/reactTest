@@ -32,8 +32,10 @@ export const Profile = (props) => {
 	},[userParam]);
 
 	useEffect(() => {
+
 		// VALIDATE IF THERE'S A USER LOADED AND IF THE PROFILE HAS BEEN HIDDEN GO TO HOME
 		if (selectedUser && isProfileHidden) history.push('/')
+			
 	});
 
 	return (

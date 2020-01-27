@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Services from './Services';
 import { UserList } from './components/UserList';
 import { Profile } from './components/Profile';
+import { Card } from './components/Card';
 import { SearchInput } from './components/SearchInput';
 import {
 
@@ -15,18 +16,7 @@ const services = new Services ();
 
 export const App = (props) => {
 	
-	const [users, setUsers] = useState([]);
 	const [isProfileHidden, setIsProfileHidden] = useState(true);
-
-	useEffect(() => {
-
-		services.getUsers(data => {
-
-			setUsers(data);
-
-		});
-
-	},[]);
 
 	return(
 
@@ -37,17 +27,37 @@ export const App = (props) => {
 				<header className="nav-header">
 					<SearchInput services={services}/>
 				</header>
+
 				<nav className="l-grid-main-nav nav-sidebar"></nav>
+
 				<main className={ isProfileHidden ? '' : 'is-two-columns'}>
-					<UserList users={users}/>
+
+					<UserList services={services}>
+
+						{
+							({users}) => users.map((user, index) => {
+
+								const { login, avatar_url, type } = user;
+								const image = { url: avatar_url, alt: login };
+
+								return <Card key={ index } title={ login } tag={ type } url={'/'+login } image={ image }/>;
+
+							})
+
+						}
+
+					</UserList>
+
 					<Switch>
+
 						<Route path="/:user" children={ <Profile services={services} isProfileHidden={isProfileHidden}
 						setIsProfileHidden={setIsProfileHidden}/> } />
+						
 					</Switch>
+
 				</main>
 
 			</div>
-			
 
 		</Router>
 
