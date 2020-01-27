@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import Services from './Services';
 import { UserList } from './components/UserList';
 import { Profile } from './components/Profile';
@@ -27,7 +27,6 @@ export const App = (props) => {
 		});
 
 	},[]);
-
 
 	return(
 

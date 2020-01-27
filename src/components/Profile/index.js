@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { RepoList } from '../RepoList';
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 export const Profile = (props) => {
 
 	const { user: currentParam } = useParams();
-	const { services, setIsProfileHidden, isProfileHidden } = props;
+	const history = useHistory();
+	const { services, isProfileHidden, setIsProfileHidden } = props;
 	const [ userParam, setUserParam ] = useState(currentParam); 
 	const [ selectedUser, setSelectedUser ] = useState(null);
 
+	
+	// ONLY CALL THE "getUser" SERVICE IF THE URL PARAM HAS CHANGED
 	if (currentParam !== userParam) setUserParam(currentParam);
 
 	useEffect(() => {
@@ -26,15 +29,16 @@ export const Profile = (props) => {
 
 		});
 
-
-
 	},[userParam]);
 
-
+	useEffect(() => {
+		// VALIDATE IF THERE'S A USER LOADED AND IF THE PROFILE HAS BEEN HIDDEN GO TO HOME
+		if (selectedUser && isProfileHidden) history.push('/')
+	});
 
 	return (
 
-		<aside className={ isProfileHidden ? 'is-hidden' : 'profile'} onClick={e => e.stopPropagation()}>
+		<aside className="profile" onClick={e => e.stopPropagation()}>
 
 			{ selectedUser ? (
 
