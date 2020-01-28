@@ -10,7 +10,8 @@ export default class Services {
 		let options = {
 			method,
 			headers: new Headers({
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+				Accept: 'application/vnd.github.v3+json'
 			})
 		}
 
@@ -59,4 +60,3 @@ export default class Services {
 	}
 
 }
-

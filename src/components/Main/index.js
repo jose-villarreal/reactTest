@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { UserList } from '../UserList';
 import { Profile } from '../Profile';
 import { Card } from '../Card';
@@ -9,26 +9,31 @@ import {
 
 } from "react-router-dom";
 
-export const Main = (props) => {
+export const Main = props => {
 
 	const { services } = props;
-	const [isProfileHidden, setIsProfileHidden] = useState(true);
+	const {isProfileHidden, setIsProfileHidden} = props;
 
 	return (
 
-		<main className={ isProfileHidden ? '' : 'is-two-columns'} onClick={ () => setIsProfileHidden(true) }>
+		<main className={ isProfileHidden ? '' : 'is-two-columns'}>
 
 			<UserList services={services}>
 
 				{
-					({users}) => users.map((user, index) => {
+					({users}) => {
 
-						const { login, avatar_url, type } = user;
-						const image = { url: avatar_url, alt: login };
+						return (<div className="l-grid-list">
+							{ users.map((user, index) => {
 
-						return <Card key={ index } title={ login } tag={ type } url={'/'+login } image={ image }/>;
+									const { login, avatar_url, type } = user;
+									const image = { url: avatar_url, alt: login };
 
-					})
+									return <Card key={ index } title={ login } tag={ type } url={'/'+login } image={ image }/>;
+
+							}) }
+						</div>);
+					}
 
 				}
 

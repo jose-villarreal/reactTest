@@ -1,29 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const UserList = (props) => {
 
-	const { services, children } = props;
+	const { services, children, searchValue = null } = props;
 	const [users, setUsers] = useState([]);
 
 	useEffect(() => {
 
-		services.getUsers().then(setUsers);
-
-	},[]);
-
-	return(
-		
-		<div className="l-grid-list">
-
-			{
-				children({
-					users
-				})
-			}
+		(async () => {
 			
-		</div>
+			if (searchValue) setUsers((await services.searchUser({ q: searchValue })).items);
+			else setUsers(await services.getUsers());
 
-	);
+		})();
+
+	},[searchValue]);
+
+	return children({users});
 
 };
 

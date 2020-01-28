@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-export const Card = (props) => {
+export const Card = props => {
 
 	const { title, image, tag, url } = props;
 
@@ -13,18 +13,18 @@ export const Card = (props) => {
 
 				<header>
 
-					{ image ? (
+					{ image && (
 						<img className="card-image l-align-center" src={image.url} alt={image.alt}></img>
-					): '' }
+					) }
 					<h2 className="card-title">
 						{title}
 					</h2>
 
-					{ tag ? (
+					{ tag && (
 						<p className="tag">
 							{tag}
 						</p>
-					) : '' }
+					)}
 
 				</header>
 			</article>
