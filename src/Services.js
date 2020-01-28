@@ -5,7 +5,7 @@ export default class Services {
 	clientSecret = '39e7aa46f7438bfb3fcc6756eaad1e51740ff238';
 	queryParams = `?client_id=${this.clientId}&client_secret=${this.clientSecret}`;
 
-	fetchData (url, method, callback, body) {
+	async fetchData (url, method, callback, body) {
 
 		let options = {
 			method,
@@ -16,10 +16,19 @@ export default class Services {
 
 		if (body) options.body = JSON.stringify(body);
 
-		fetch(url, options)
-		.then(res => res.text())
-		.then(data => callback(JSON.parse(data)))
-		.catch(() => console.log('Can’t access response.'));
+		try {
+
+			let response = await fetch(url, options);
+			let data = await response.text();
+			callback(JSON.parse(data));
+
+		} catch (error) {
+
+			console.log(error);
+			throw error;
+
+		}
+
 
 	}
 
