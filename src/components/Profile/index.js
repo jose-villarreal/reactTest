@@ -16,11 +16,10 @@ export const Profile = (props) => {
 
 	useEffect(() => {
 
-		services.getUser(currentParam, data => {
+		services.getUser(currentParam).then(data => {
 
 			let user = {...data, repos: []};
-
-			services.getRepo(currentParam, data => {
+			services.getRepo(currentParam).then(data => {
 
 				setIsProfileHidden(false);
 				setSelectedUser({...user, repos: data});

@@ -5,7 +5,7 @@ export default class Services {
 	clientSecret = '39e7aa46f7438bfb3fcc6756eaad1e51740ff238';
 	queryParams = `?client_id=${this.clientId}&client_secret=${this.clientSecret}`;
 
-	async fetchData (url, method, callback, body) {
+	async fetchData (url, method) {
 
 		let options = {
 			method,
@@ -14,13 +14,11 @@ export default class Services {
 			})
 		}
 
-		if (body) options.body = JSON.stringify(body);
-
 		try {
 
 			let response = await fetch(url, options);
-			let data = await response.text();
-			callback(JSON.parse(data));
+			return  await response.json();
+
 
 		} catch (error) {
 
@@ -32,31 +30,31 @@ export default class Services {
 
 	}
 
-	getUsers (callback) {
+	async getUsers () {
 
-		this.fetchData(`${this.url}users${this.queryParams}`,'GET',callback);
-
-	}
-
-	getUser (user, callback) {
-
-		this.fetchData(`${this.url}users/${user}${this.queryParams}`,'GET',callback);
+		return await this.fetchData(`${this.url}users${this.queryParams}`,'GET');
 
 	}
 
-	getRepo (user, callback) {
+	async getUser (user) {
 
-		this.fetchData(`${this.url}users/${user}/repos${this.queryParams}`,'GET',callback);
+		return await this.fetchData(`${this.url}users/${user}${this.queryParams}`,'GET');
 
 	}
 
-	searchUser (searchParams, callback) {
+	async getRepo (user) {
+
+		return await this.fetchData(`${this.url}users/${user}/repos${this.queryParams}`,'GET');
+
+	}
+
+	async searchUser (searchParams) {
 
 		let paramString = '';
 
 		for (let key in searchParams) paramString = `${paramString}&${key}=${searchParams[key]}`;
 		
-		this.fetchData(`${this.url}search/users${this.queryParams}${paramString}`,'GET',callback);
+		return await this.fetchData(`${this.url}search/users${this.queryParams}${paramString}`,'GET');
 
 	}
 

@@ -37,7 +37,7 @@ export const SearchInput = (props) => {
 
 				q: value
 
-			}, data => {
+			}).then(data => {
 
 				setUsers(data.items.length <= 15 ? data.items : data.items.slice(0,15));
 

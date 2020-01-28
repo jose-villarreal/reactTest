@@ -7,11 +7,7 @@ export const UserList = (props) => {
 
 	useEffect(() => {
 
-		services.getUsers(data => {
-
-			setUsers(data);
-
-		});
+		services.getUsers().then(setUsers);
 
 	},[]);
 
