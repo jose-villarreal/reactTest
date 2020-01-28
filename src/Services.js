@@ -11,7 +11,7 @@ export default class Services {
 			method,
 			headers: new Headers({
 				'Content-Type': 'application/json',
-				Accept: 'application/vnd.github.v3+json'
+				'Accept': 'application/vnd.github.v3+json'
 			})
 		}
 
