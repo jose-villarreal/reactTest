@@ -1,20 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Main } from './components/Main';
 import Services from './Services';
 import { SearchInput } from './components/SearchInput';
-import {
-
-  BrowserRouter as Router,
-  Switch,
-  Route
-
-} from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const services = new Services ();
 
 export const App = (props) => {
-
-	const [isProfileHidden, setIsProfileHidden] = useState(true);
 
 	return(
 

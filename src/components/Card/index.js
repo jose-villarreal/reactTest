@@ -5,8 +5,6 @@ export const Card = (props) => {
 
 	const { title, image, tag, url } = props;
 
-	console.log('asdasdasda');
-
 	return (
 
 		<Link to={ url } onClick={e => e.stopPropagation()}>
