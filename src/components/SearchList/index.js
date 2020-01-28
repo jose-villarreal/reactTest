@@ -14,7 +14,7 @@ export const SearchList = props => {
 					const { image, text, url } = item;
 
 					return (
-						<li key={index} className='search-list-item'>
+						<li key={index} className='search-list-item' onClick={ e => e.stopPropagation() }>
 
 							<Link to={ url } className='search-list-link'>
 								{(image && <img className="card-image card-image-sm l-float-left" src={image.url} alt={image.alt}></img>)}
