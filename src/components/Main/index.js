@@ -42,8 +42,7 @@ export const Main = props => {
 
 			<Switch>
 
-				<Route path="/:user" children={ <Sidebar services={services} isSidebarHidden={isSidebarHidden}
-				setIsSidebarHidden={setIsSidebarHidden} children={
+				<Route path="/:user" children={ <Sidebar setIsSidebarHidden={setIsSidebarHidden} children={
 					<UserProfile services={services}isSidebarHidden={isSidebarHidden} setIsSidebarHidden={setIsSidebarHidden} grid="l-aside-rows"/>
 				}/>}/>
 				
