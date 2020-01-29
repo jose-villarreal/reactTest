@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { RepoList } from '../RepoList';
+import { SidebarDetails } from '../SidebarDetails';
 import { useParams, useHistory } from "react-router-dom";
 
 export const UserProfile = props => {
@@ -19,11 +20,28 @@ export const UserProfile = props => {
 
 		services.getUser(currentParam).then(data => {
 
-			let user = {...data, repos: []};
+			let user = {
+				user: {
+					title: data.login,
+					image: { url: data.avatar_url, alt: data.login },
+					tag: data.type,
+					url: data.html_url,
+					numericValues: [
+						{ key: 'Repos', value: data.public_repos},
+						{ key: 'Gists', value: data.public_gists},
+						{ key: 'Followers', value: data.followers},
+						{ key: 'Following', value: data.following},
+					]
+				},
+				repos: []
+			};
+
 			services.getRepo(currentParam).then(data => {
 
 				setIsSidebarHidden(false);
 				setSelectedUser({...user, repos: data});
+
+				console.log({...user, repos: data});
 
 			});
 
@@ -44,40 +62,8 @@ export const UserProfile = props => {
 				{ selectedUser && (
 
 					<div className={grid}>
-						<header className="profile-header">
 
-							<div className="l-text-center">
-
-								<img className="card-image" src={selectedUser.avatar_url} alt={selectedUser.login}></img>
-								<h2 className="card-title">{selectedUser.login}</h2>
-								<p className="tag">
-									{selectedUser.type}
-								</p>
-								<a className="l-align-center" href={selectedUser.html_url} target="_blank" rel="noopener noreferrer">
-									{selectedUser.html_url}
-								</a>
-
-								<div className="l-four-columns">
-
-									<p>
-										<span className="profile-number">{selectedUser.public_repos}</span><br></br>Repos
-									</p>
-									<p>
-										<span className="profile-number">{selectedUser.public_gists}</span><br></br>Gists
-									</p>
-									<p>
-										<span className="profile-number">{selectedUser.followers}</span><br></br>Followers
-									</p>
-									<p>
-										<span className="profile-number">{selectedUser.following}</span><br></br>Following
-									</p>
-									
-								</div>
-
-							</div>
-
-						</header>
-
+						<SidebarDetails data={selectedUser.user}/>
 						<RepoList repos={selectedUser.repos}/>
 
 					</div>
