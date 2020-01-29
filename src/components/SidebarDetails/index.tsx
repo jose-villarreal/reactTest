@@ -1,6 +1,28 @@
 import React from 'react';
 
-export const SidebarDetails = props => {
+interface IImage {
+	url: string;
+	alt: string;
+}
+
+interface INumericValue {
+	key: string;
+	value: number;
+}
+
+export interface ISidebarData{
+	title?: string;
+	tag?: string;
+	url?: string;
+	numericValues?: INumericValue[];
+	image?: IImage;
+}
+
+interface IProps {
+	data: ISidebarData;
+}
+
+export const SidebarDetails: React.FC<IProps> = (props:IProps) => {
 
 	const { title, image, tag, url, numericValues } = props.data;
 	

@@ -1,7 +1,23 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-export const SearchList = props => {
+interface IImage {
+	url: string;
+	alt: string;
+}
+
+export interface IItem {
+	text: string;
+	url: string;
+	image: IImage;
+}
+
+
+interface IProps {
+	items : IItem[];
+}
+
+export const SearchList: React.FC<IProps> = (props:IProps) => {
 
 	const {items} = props;
 

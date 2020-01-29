@@ -6,9 +6,9 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 const services = new Services ();
 
-export const App = props => {
+export const App = () => {
 
-	const [isSidebarHidden, setIsSidebarHidden] = useState(true);
+	const [isSidebarHidden, setIsSidebarHidden] = useState<boolean>(true);
 
 	return(
 

@@ -1,7 +1,20 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-export const Card = props => {
+interface IImage {
+	url: string;
+	alt: string;
+}
+
+interface IProps {
+
+	title: string;
+	tag?: string;
+	url: string;
+	image?: IImage;
+}
+
+export const Card: React.FC<IProps> = (props:IProps) => {
 
 	const { title, image, tag, url } = props;
 

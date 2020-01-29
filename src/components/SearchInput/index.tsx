@@ -1,10 +1,25 @@
 import React, { useState } from 'react';
 
-export const SearchInput = props => {
+interface IChildrenProps {
+	searchValue: string;
+	isListHidden: boolean;
+}
+
+interface IChildren {
+
+	(params:IChildrenProps): {}
+
+}
+
+interface IProps {
+	children: IChildren
+}
+
+export const SearchInput: React.FC<IProps> = (props:IProps) => {
 
 	const {children} = props;
-	const [isListHidden, setIsListHidden] = useState(true);
-	const [searchValue, setSearchValue] = useState('');
+	const [isListHidden, setIsListHidden] = useState<boolean>(true);
+	const [searchValue, setSearchValue] = useState<string>('');
 
 	const delayedListHiding = () => {
 
@@ -16,14 +31,13 @@ export const SearchInput = props => {
 
 	};
 
-	
 
 	return(
 
 		<div>
 
 			<input className="search-input" type="text" placeholder="Search users" 
-				onKeyUp={ e => setSearchValue(e.target.value) }  
+				onKeyUp={ e => setSearchValue((e.target as HTMLInputElement).value) }  
 				onFocus={ e => setIsListHidden(false) } 
 				onClick={ e => e.stopPropagation() }
 				onBlur={ delayedListHiding }>

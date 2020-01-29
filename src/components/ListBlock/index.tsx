@@ -1,6 +1,27 @@
 import React from 'react';
 
-export const ListBlock = props => {
+interface IFooterItem {
+	icon?: string;
+	text: string;
+}
+interface ITitle {
+
+	url?: string;
+	text:string;
+
+}
+
+export interface  IListBlockData{
+	description: string;
+	title: ITitle;
+	footerItems?: IFooterItem[];
+} 
+
+interface IProps {
+	data: IListBlockData[];
+}
+
+export const ListBlock: React.FC<IProps> = (props:IProps) => {
 
 
 	const {data:items} = props;

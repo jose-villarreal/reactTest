@@ -1,13 +1,20 @@
 import React from 'react';
 import { UserList } from '../UserList';
-import { SearchList } from '../SearchList';
+import { SearchList, IItem } from '../SearchList';
 import { SearchInput } from '../SearchInput';
+import Services, {IUser} from '../../Services';
 
-export const UserSearch = props => {
+interface IProps {
+
+	services: Services
+	
+}
+
+export const UserSearch: React.FC<IProps> = (props:IProps) => {
 
 	const { services } = props;
 
-	const mapSearchList = users => users.map(user => ({
+	const mapSearchList = (users:IUser[]): IItem[] => users.map(user => ({
 
 		image: { url: user.avatar_url, alt: user.login },
 		text: user.login,

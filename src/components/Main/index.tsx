@@ -3,6 +3,7 @@ import { UserList } from '../UserList';
 import { UserProfile } from '../UserProfile';
 import { Sidebar } from '../Sidebar';
 import { Card } from '../Card';
+import Services from '../../Services';
 import {
 
   Switch,
@@ -10,7 +11,15 @@ import {
 
 } from "react-router-dom";
 
-export const Main = props => {
+interface IProps {
+
+	services: Services;
+	isSidebarHidden: boolean;
+	setIsSidebarHidden: React.Dispatch<React.SetStateAction<boolean>>;
+	
+}
+
+export const Main: React.FC<IProps> = (props:IProps) => {
 
 	const { services } = props;
 	const {isSidebarHidden, setIsSidebarHidden} = props;

@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
-export const Sidebar = props => {
+interface IProps {
+
+	setIsSidebarHidden: React.Dispatch<React.SetStateAction<boolean>>;
+	children: ReactElement;
+}
+
+export const Sidebar: React.FC<IProps> = (props:IProps) => {
 
 	
 	const { children, setIsSidebarHidden } = props;
