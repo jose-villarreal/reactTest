@@ -1,6 +1,7 @@
 import React from 'react';
 import { UserList } from '../UserList';
-import { Profile } from '../Profile';
+import { UserProfile } from '../UserProfile';
+import { Sidebar } from '../Sidebar';
 import { Card } from '../Card';
 import {
 
@@ -12,11 +13,11 @@ import {
 export const Main = props => {
 
 	const { services } = props;
-	const {isProfileHidden, setIsProfileHidden} = props;
+	const {isSidebarHidden, setIsSidebarHidden} = props;
 
 	return (
 
-		<main className={ isProfileHidden ? '' : 'is-two-columns'}>
+		<main className={ isSidebarHidden ? '' : 'is-two-columns'}>
 
 			<UserList services={services}>
 
@@ -41,8 +42,10 @@ export const Main = props => {
 
 			<Switch>
 
-				<Route path="/:user" children={ <Profile services={services} isProfileHidden={isProfileHidden}
-				setIsProfileHidden={setIsProfileHidden}/> }/>
+				<Route path="/:user" children={ <Sidebar services={services} isSidebarHidden={isSidebarHidden}
+				setIsSidebarHidden={setIsSidebarHidden} children={
+					<UserProfile services={services}isSidebarHidden={isSidebarHidden} setIsSidebarHidden={setIsSidebarHidden} grid="l-aside-rows"/>
+				}/>}/>
 				
 			</Switch>
 

@@ -8,13 +8,13 @@ const services = new Services ();
 
 export const App = props => {
 
-	const [isProfileHidden, setIsProfileHidden] = useState(true);
+	const [isSidebarHidden, setIsSidebarHidden] = useState(true);
 
 	return(
 
 		<Router>
 
-			<div className="l-grid-main" onClick={ () => setIsProfileHidden(true) }>
+			<div className="l-grid-main" onClick={ () => setIsSidebarHidden(true) }>
 
 				<header className="nav-header">
 
@@ -22,7 +22,7 @@ export const App = props => {
 					
 				</header>
 
-				<Main services={services} isProfileHidden={isProfileHidden} setIsProfileHidden={setIsProfileHidden}/>
+				<Main services={services} isSidebarHidden={isSidebarHidden} setIsSidebarHidden={setIsSidebarHidden}/>
 				<nav className="l-grid-main-nav nav-sidebar"></nav>
 
 			</div>
