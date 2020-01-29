@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Main } from './components/Main';
 import Services from './Services';
-import { SearchInput } from './components/SearchInput';
+import { SearchUsers } from './components/SearchUsers';
 import { BrowserRouter as Router } from "react-router-dom";
 
 const services = new Services ();
@@ -17,7 +17,9 @@ export const App = props => {
 			<div className="l-grid-main" onClick={ () => setIsProfileHidden(true) }>
 
 				<header className="nav-header">
-					<SearchInput services={services}/>
+
+					<SearchUsers services={services}/>
+					
 				</header>
 
 				<Main services={services} isProfileHidden={isProfileHidden} setIsProfileHidden={setIsProfileHidden}/>
