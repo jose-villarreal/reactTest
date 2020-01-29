@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { RepoList } from '../RepoList';
+import { ListBlock } from '../ListBlock';
 import { SidebarDetails } from '../SidebarDetails';
 import { useParams, useHistory } from "react-router-dom";
 
@@ -36,12 +36,22 @@ export const UserProfile = props => {
 				repos: []
 			};
 
-			services.getRepo(currentParam).then(data => {
+			services.getRepo(currentParam).then(repos => {
 
 				setIsSidebarHidden(false);
-				setSelectedUser({...user, repos: data});
+				setSelectedUser({...user, repos: repos.map(repo => ({
+					title: {
+						url: repo.html_url,
+						text: repo.name,
 
-				console.log({...user, repos: data});
+					},
+					description: repo.description,
+					footerItems:[
+						{ text: repo.language},
+						{ icon:'star', text: repo.stargazers_count},
+						{ icon:'fork', text: repo.forks_count},
+					]
+				}))});
 
 			});
 
@@ -64,7 +74,7 @@ export const UserProfile = props => {
 					<div className={grid}>
 
 						<SidebarDetails data={selectedUser.user}/>
-						<RepoList repos={selectedUser.repos}/>
+						<ListBlock data={selectedUser.repos}/>
 
 					</div>
 				)}

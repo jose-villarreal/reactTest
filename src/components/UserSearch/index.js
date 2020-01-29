@@ -3,7 +3,7 @@ import { UserList } from '../UserList';
 import { SearchList } from '../SearchList';
 import { SearchInput } from '../SearchInput';
 
-export const SearchUsers= props => {
+export const UserSearch = props => {
 
 	const { services } = props;
 

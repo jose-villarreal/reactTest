@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Main } from './components/Main';
 import Services from './Services';
-import { SearchUsers } from './components/SearchUsers';
+import { UserSearch } from './components/UserSearch';
 import { BrowserRouter as Router } from "react-router-dom";
 
 const services = new Services ();
@@ -18,7 +18,7 @@ export const App = props => {
 
 				<header className="nav-header">
 
-					<SearchUsers services={services}/>
+					<UserSearch services={services}/>
 					
 				</header>
 
