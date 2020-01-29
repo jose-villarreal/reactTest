@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, ReactElement } from 'react';
 
 interface IChildrenProps {
 	searchValue: string;
@@ -7,7 +7,7 @@ interface IChildrenProps {
 
 interface IChildren {
 
-	(params:IChildrenProps): {}
+	(params:IChildrenProps): ReactElement
 
 }
 

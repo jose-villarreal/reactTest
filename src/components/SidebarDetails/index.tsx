@@ -38,7 +38,7 @@ export const SidebarDetails: React.FC<IProps> = (props:IProps) => {
 					)
 				}
 
-				<h2 className="card-title">title</h2>
+				<h2 className="card-title">{title}</h2>
 
 				{
 					tag && (
