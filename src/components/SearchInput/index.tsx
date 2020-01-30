@@ -1,4 +1,5 @@
 import React, { useState, ReactElement } from 'react';
+import { GrayInput } from './styles';
 
 interface IChildrenProps {
 	searchValue: string;
@@ -35,13 +36,13 @@ export const SearchInput: React.FC<IProps> = (props:IProps) => {
 	return(
 
 		<div>
-
-			<input className="search-input" type="text" placeholder="Search users" 
+			
+			<GrayInput type="text" placeholder="Search users"
 				onKeyUp={ e => setSearchValue((e.target as HTMLInputElement).value) }  
 				onFocus={ e => setIsListHidden(false) } 
 				onClick={ e => e.stopPropagation() }
-				onBlur={ delayedListHiding }>
-			</input>
+				onBlur={ delayedListHiding }
+			/>
 
 			{ children({
 

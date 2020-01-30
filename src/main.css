@@ -52,22 +52,6 @@ LAYOUT
 
 ------------------------------------*/
 
-.l-grid-main {
-
-	display: grid;
-	height: 100vh;
-	grid-template-columns: 60px 1fr;
-	grid-template-rows: 80px 1fr;
-
-}
-
-.l-grid-main-nav {
-
-	grid-column-start: 1;
-	grid-row: 1 / -1;
-
-}
-
 .l-grid-list {
 
 	display: grid;
@@ -119,22 +103,6 @@ LAYOUT
 MODULES
 
 ------------------------------------*/
-
-.nav-sidebar {
-	
-	background: lightpink;
-
-}
-
-.nav-header {
-
-	background-color: #fff;
-	border-bottom: 1px solid #d8d8d8;
-    padding: 22px 30px;
-    position: relative;
-
-}
-
 
 .card {
 
@@ -328,7 +296,6 @@ MODULES
 	font-family: "fontello";
 	font-style: normal;
 	font-weight: normal;
-	speak: none;
 
 	display: inline-block;
 	text-decoration: inherit;

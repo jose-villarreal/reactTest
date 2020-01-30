@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { CardArticle } from './styles';
+import { RoundImage, Tag } from '../../styles';
 
 interface IImage {
 	url: string;
@@ -22,25 +24,17 @@ export const Card: React.FC<IProps> = (props:IProps) => {
 
 		<Link to={ url } onClick={e => e.stopPropagation()}>
 
-			<article className="card l-text-center">
+			<CardArticle>
 
-				<header>
+				{ image && (
+					<RoundImage src={image.url} alt={image.alt}/>
+				) }
 
-					{ image && (
-						<img className="card-image l-align-center" src={image.url} alt={image.alt}></img>
-					) }
-					<h2 className="card-title">
-						{title}
-					</h2>
+				<h2>{title}</h2>
 
-					{ tag && (
-						<p className="tag">
-							{tag}
-						</p>
-					)}
+				{ tag && ( <Tag>{tag}</Tag> )}
 
-				</header>
-			</article>
+			</CardArticle>
 
 		</Link>
 		

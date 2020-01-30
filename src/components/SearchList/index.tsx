@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { List, ListImage } from './styles'; 
 
 interface IImage {
 	url: string;
@@ -23,7 +24,7 @@ export const SearchList: React.FC<IProps> = (props:IProps) => {
 
 	return (
 
-		<ul className="search-list">
+		<List>
 			{
 				items.map((item, index) => {
 
@@ -31,10 +32,10 @@ export const SearchList: React.FC<IProps> = (props:IProps) => {
 
 					return (
 						
-						<li key={index} className='search-list-item' onClick={ e => e.stopPropagation() }>
+						<li key={index} onClick={ e => e.stopPropagation() }>
 
-							<Link to={ url } className='search-list-link'>
-								{(image && <img className="card-image card-image-sm l-float-left" src={image.url} alt={image.alt}></img>)}
+							<Link to={ url }>
+								{(image && <ListImage src={image.url} alt={image.alt}/>)}
 								{text}
 							</Link>
 
@@ -42,7 +43,7 @@ export const SearchList: React.FC<IProps> = (props:IProps) => {
 					);
 				})
 			}
-		</ul>
+		</List>
 
 	);
 

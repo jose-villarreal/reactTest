@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { ListBlock, IListBlockData } from '../ListBlock';
 import { SidebarDetails, ISidebarData }  from '../SidebarDetails';
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory } from 'react-router-dom';
+import { GridTwoRows} from './styles';
 import Services from '../../Services';
 
 interface IProps {
 	services: Services;
 	isSidebarHidden: boolean;
 	setIsSidebarHidden: React.Dispatch<React.SetStateAction<boolean>>;
-	grid: string;
 }
 
 interface IRouteParams {
@@ -26,7 +26,7 @@ export const UserProfile: React.FC<IProps> = (props:IProps) => {
 
 	const { user: currentParam } = useParams<IRouteParams>();
 	const history = useHistory();
-	const { services, isSidebarHidden, setIsSidebarHidden, grid } = props;
+	const { services, isSidebarHidden, setIsSidebarHidden } = props;
 	const [ userParam, setUserParam ] = useState(currentParam); 
 	const [ selectedUser, setSelectedUser ] = useState<ISelectedUser | null>(null);
 
@@ -87,17 +87,20 @@ export const UserProfile: React.FC<IProps> = (props:IProps) => {
 
 	return (
 
-			<div>
+			
+			<GridTwoRows>
+
 				{ selectedUser && (
 
-					<div className={grid}>
+					<React.Fragment>
 
 						<SidebarDetails data={selectedUser.user}/>
 						<ListBlock data={selectedUser.repos}/>
 
-					</div>
+					</React.Fragment>
 				)}
-			</div>
+
+			</GridTwoRows>
 
 	);
 

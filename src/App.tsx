@@ -3,6 +3,7 @@ import { Main } from './components/Main';
 import Services from './Services';
 import { UserSearch } from './components/UserSearch';
 import { BrowserRouter as Router } from "react-router-dom";
+import { MainGrid, MainNav, MainHeader } from './styles';
 
 const services = new Services ();
 
@@ -14,18 +15,18 @@ export const App = () => {
 
 		<Router>
 
-			<div className="l-grid-main" onClick={ () => setIsSidebarHidden(true) }>
+			<MainGrid onClick={ () => setIsSidebarHidden(true) }>
 
-				<header className="nav-header">
+				<MainHeader>
 
 					<UserSearch services={services}/>
 					
-				</header>
+				</MainHeader>
 
 				<Main services={services} isSidebarHidden={isSidebarHidden} setIsSidebarHidden={setIsSidebarHidden}/>
-				<nav className="l-grid-main-nav nav-sidebar"></nav>
+				<MainNav/>
 
-			</div>
+			</MainGrid>
 
 		</Router>
 

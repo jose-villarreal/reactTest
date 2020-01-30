@@ -4,6 +4,7 @@ import { UserProfile } from '../UserProfile';
 import { Sidebar } from '../Sidebar';
 import { Card } from '../Card';
 import Services from '../../Services';
+import { GridColumns, GridList } from './styles';
 import {
 
   Switch,
@@ -26,14 +27,14 @@ export const Main: React.FC<IProps> = (props:IProps) => {
 
 	return (
 
-		<main className={ isSidebarHidden ? '' : 'is-two-columns'}>
+		<GridColumns twoColumns={!isSidebarHidden}>
 
 			<UserList services={services}>
 
 				{
 					({users}) => {
 
-						return (<div className="l-grid-list">
+						return (<GridList>
 							{ users.map((user, index) => {
 
 									const { login, avatar_url, type } = user;
@@ -42,7 +43,7 @@ export const Main: React.FC<IProps> = (props:IProps) => {
 									return <Card key={ index } title={ login } tag={ type } url={'/'+login } image={ image }/>;
 
 							}) }
-						</div>);
+						</GridList>);
 					}
 
 				}
@@ -53,13 +54,16 @@ export const Main: React.FC<IProps> = (props:IProps) => {
 
 				<Route path="/:user">
 					<Sidebar setIsSidebarHidden={setIsSidebarHidden}>
-						<UserProfile services={services}isSidebarHidden={isSidebarHidden} setIsSidebarHidden={setIsSidebarHidden} grid="l-aside-rows"/>
+						<UserProfile services={services}isSidebarHidden={isSidebarHidden} setIsSidebarHidden={setIsSidebarHidden}/>
 					</Sidebar>
 				</Route>
 				
 			</Switch>
 
-		</main>
+		</GridColumns>
+
+
+		
 
 	);
 

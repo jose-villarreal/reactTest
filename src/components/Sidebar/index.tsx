@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import { SideBarAside, SideBarCancel } from './styles';
 
 interface IProps {
 
@@ -14,13 +15,13 @@ export const Sidebar: React.FC<IProps> = (props:IProps) => {
 
 	return (
 
-		<aside className="profile" onClick={e => e.stopPropagation()}>
+		<SideBarAside onClick={e => e.stopPropagation()}>
 
-			<span className="icon-cancel profile-cancel" onClick={() => setIsSidebarHidden(true)}></span>
+			<SideBarCancel onClick={() => setIsSidebarHidden(true)}></SideBarCancel>
 
 			{ children }
 
-		</aside>
+		</SideBarAside>
 		
 	);
 
