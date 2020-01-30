@@ -43,19 +43,22 @@ export const Tag = styled.p`
 
 
 export const Icon = styled.span`
+    &:before {
+        
+        font-family: "fontello";
+        font-style: normal;
+        font-weight: normal;
+        display: inline-block;
+        text-decoration: inherit;
+        width: 1em;
+        margin-right: .2em;
+        text-align: center;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1em;
+        margin-left: .2em;
 
-    font-family: "fontello";
-    font-style: normal;
-    font-weight: normal;
-    display: inline-block;
-    text-decoration: inherit;
-    width: 1em;
-    margin-right: .2em;
-    text-align: center;
-    font-variant: normal;
-	text-transform: none;
-	line-height: 1em;
-    margin-left: .2em;
+    }
     
 `; 
     

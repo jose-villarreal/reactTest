@@ -1,4 +1,6 @@
 import React from 'react';
+import { ListBlockUl, ListBlockItem, ListBlockItemTitle, ListBlockItemFooter } from './styles';
+import { IconFork, IconStar } from '../../styles';
 
 interface IFooterItem {
 	icon?: string;
@@ -26,9 +28,28 @@ export const ListBlock: React.FC<IProps> = (props:IProps) => {
 
 	const {data:items} = props;
 
+	const iconSwitch = (icon: string | undefined, text: string, key: number) => {
+
+		let iconElement;
+
+		switch(icon) {
+			case 'star':
+				iconElement = <IconStar key={key}>{text}</IconStar>;
+				break;
+			case 'fork':
+				iconElement = <IconFork key={key}>{text}</IconFork>;
+				break;
+			default:
+				iconElement = <React.Fragment key={key}>{text}</React.Fragment>;
+		}
+
+		return iconElement;
+
+	};
+
 	return (
 
-		<ul className="list-block">
+		<ListBlockUl>
 
 			{ items.map((item, index) => {
 
@@ -36,15 +57,15 @@ export const ListBlock: React.FC<IProps> = (props:IProps) => {
 
 				return(
 					
-					<li className="list-block-item" key={index}>
+					<ListBlockItem key={index}>
 
 						{
 							title.url ? (
 								<a href={title.url} target="_blank" rel="noopener noreferrer">
-									<h3 className="list-block-item-title">{title.text}</h3>
+									<ListBlockItemTitle>{title.text}</ListBlockItemTitle>
 								</a>
 							) : (
-								<h3 className="list-block-item-title">{title.text}</h3>
+								<ListBlockItemTitle>{title.text}</ListBlockItemTitle>
 							)
 						}
 
@@ -55,24 +76,24 @@ export const ListBlock: React.FC<IProps> = (props:IProps) => {
 						{
 							footerItems && (
 
-								<p className="list-block-item-footer">
+								<ListBlockItemFooter>
 
 									{
-										footerItems.map( (item, index)=> <span key={index} className={item.icon && `icon-${item.icon}`}>{item.text}</span> )
+										footerItems.map( (item, index)=> iconSwitch(item.icon, item.text, index))
 									}
 									
-								</p>
+								</ListBlockItemFooter>
 
 							)
 						}
 
-					</li>
+					</ListBlockItem>
 
 				);
 
 			}) }
 
-		</ul>
+		</ListBlockUl>
 
 	);
 

@@ -33,4 +33,22 @@ export const GridList = styled.div`
     padding: 20px 30px 50px 30px;
     overflow-y: scroll;
 
+    @media (min-width: 0px) {
+        
+        grid-template-columns: repeat(1, 1fr);
+        
+    }
+    
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(3, 1fr);
+        
+    }
+    
+    @media (min-width: 992px) {
+
+        grid-template-columns: repeat(5, 1fr);
+        
+    }
+    
+
 `;
