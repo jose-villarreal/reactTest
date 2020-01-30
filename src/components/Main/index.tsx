@@ -51,9 +51,11 @@ export const Main: React.FC<IProps> = (props:IProps) => {
 
 			<Switch>
 
-				<Route path="/:user" children={ <Sidebar setIsSidebarHidden={setIsSidebarHidden} children={
-					<UserProfile services={services}isSidebarHidden={isSidebarHidden} setIsSidebarHidden={setIsSidebarHidden} grid="l-aside-rows"/>
-				}/>}/>
+				<Route path="/:user">
+					<Sidebar setIsSidebarHidden={setIsSidebarHidden}>
+						<UserProfile services={services}isSidebarHidden={isSidebarHidden} setIsSidebarHidden={setIsSidebarHidden} grid="l-aside-rows"/>
+					</Sidebar>
+				</Route>
 				
 			</Switch>
 

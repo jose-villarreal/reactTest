@@ -15,7 +15,7 @@ interface IRouteParams {
 	user: string;
 }
 
-interface IParsedData {
+interface ISelectedUser {
 
 	user: ISidebarData;
 	repos: IListBlockData[];
@@ -28,7 +28,7 @@ export const UserProfile: React.FC<IProps> = (props:IProps) => {
 	const history = useHistory();
 	const { services, isSidebarHidden, setIsSidebarHidden, grid } = props;
 	const [ userParam, setUserParam ] = useState(currentParam); 
-	const [ selectedUser, setSelectedUser ] = useState<IParsedData | null>(null);
+	const [ selectedUser, setSelectedUser ] = useState<ISelectedUser | null>(null);
 
 
 	
@@ -41,7 +41,7 @@ export const UserProfile: React.FC<IProps> = (props:IProps) => {
 
 			let data = await services.getUser(currentParam);
 
-			let parsedData: IParsedData = {
+			let parsedData: ISelectedUser = {
 				user: {
 					title: data.login,
 					image: { url: data.avatar_url, alt: data.login },
