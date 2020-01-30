@@ -3,6 +3,7 @@ import { UserList } from '../UserList';
 import { SearchList, IItem } from '../SearchList';
 import { SearchInput } from '../SearchInput';
 import Services, {IUser} from '../../Services';
+import { HideableDiv } from './styles';
 
 interface IProps {
 
@@ -31,10 +32,12 @@ export const UserSearch: React.FC<IProps> = (props:IProps) => {
 
 					<UserList searchValue={searchValue} services={services}>
 
+						
+
 						{
-							({users}) => (<div className={isListHidden ? 'is-hidden' : ''}>
-									<SearchList items={ mapSearchList(users) }/>
-							</div>)
+							({users}) => (<HideableDiv hide={isListHidden}>
+								<SearchList items={ mapSearchList(users) }/>
+							</HideableDiv>)
 						}
 
 					</UserList>

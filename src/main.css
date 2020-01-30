@@ -45,29 +45,3 @@ a {
 	display: none;
 	
 }
-
-@media (min-width: 0px) {
-	.l-grid-list {
-
-		grid-template-columns: repeat(1, 1fr);
-
-	}
-}
-
-/*Medium devices (tablets, 768px and up)*/
-@media (min-width: 768px) {
-	.l-grid-list {
-
-		grid-template-columns: repeat(3, 1fr);
-
-	}
-}
-
-/*Large devices (desktops, 992px and up)*/
-@media (min-width: 992px) {
-	.l-grid-list {
-
-		grid-template-columns: repeat(5, 1fr);
-
-	}
-}
