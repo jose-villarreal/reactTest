@@ -14,7 +14,6 @@ import {
 
 interface IProps {
 
-	services: Services;
 	isSidebarHidden: boolean;
 	setIsSidebarHidden: React.Dispatch<React.SetStateAction<boolean>>;
 	
@@ -22,14 +21,13 @@ interface IProps {
 
 export const Main: React.FC<IProps> = (props:IProps) => {
 
-	const { services } = props;
 	const {isSidebarHidden, setIsSidebarHidden} = props;
 
 	return (
 
 		<GridColumns twoColumns={!isSidebarHidden}>
 
-			<UserList services={services}>
+			<UserList>
 
 				{
 					({users}) => {
@@ -54,7 +52,7 @@ export const Main: React.FC<IProps> = (props:IProps) => {
 
 				<Route path="/:user">
 					<Sidebar setIsSidebarHidden={setIsSidebarHidden}>
-						<UserProfile services={services}isSidebarHidden={isSidebarHidden} setIsSidebarHidden={setIsSidebarHidden}/>
+						<UserProfile isSidebarHidden={isSidebarHidden} setIsSidebarHidden={setIsSidebarHidden}/>
 					</Sidebar>
 				</Route>
 				

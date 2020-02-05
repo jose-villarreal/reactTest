@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Main } from './components/Main';
 import Services from './Services';
+import { ServicesContext } from './Contexts';
 import { UserSearch } from './components/UserSearch';
 import { BrowserRouter as Router } from "react-router-dom";
 import { MainGrid, MainNav, MainHeader } from './styles';
@@ -15,18 +16,23 @@ export const App = () => {
 
 		<Router>
 
-			<MainGrid onClick={ () => setIsSidebarHidden(true) }>
+			<ServicesContext.Provider value={services}>
 
-				<MainHeader>
+				<MainGrid onClick={ () => setIsSidebarHidden(true) }>
 
-					<UserSearch services={services}/>
-					
-				</MainHeader>
+					<MainHeader>
 
-				<Main services={services} isSidebarHidden={isSidebarHidden} setIsSidebarHidden={setIsSidebarHidden}/>
-				<MainNav/>
+						<UserSearch/>
+						
+					</MainHeader>
 
-			</MainGrid>
+					<Main isSidebarHidden={isSidebarHidden} setIsSidebarHidden={setIsSidebarHidden}/>
+					<MainNav/>
+
+				</MainGrid>
+
+			</ServicesContext.Provider>
+
 
 		</Router>
 

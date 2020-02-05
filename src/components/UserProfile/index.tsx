@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { ListBlock, IListBlockData } from '../ListBlock';
 import { SidebarDetails, ISidebarData }  from '../SidebarDetails';
 import { useParams, useHistory } from 'react-router-dom';
 import { GridTwoRows} from './styles';
 import Services from '../../Services';
+import { ServicesContext } from '../../Contexts';
 
 interface IProps {
-	services: Services;
+
 	isSidebarHidden: boolean;
 	setIsSidebarHidden: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -26,9 +27,10 @@ export const UserProfile: React.FC<IProps> = (props:IProps) => {
 
 	const { user: currentParam } = useParams<IRouteParams>();
 	const history = useHistory();
-	const { services, isSidebarHidden, setIsSidebarHidden } = props;
+	const { isSidebarHidden, setIsSidebarHidden } = props;
 	const [ userParam, setUserParam ] = useState(currentParam); 
 	const [ selectedUser, setSelectedUser ] = useState<ISelectedUser | null>(null);
+	const services = useContext(ServicesContext);
 
 
 	
@@ -39,40 +41,45 @@ export const UserProfile: React.FC<IProps> = (props:IProps) => {
 
 		(async () => {
 
-			let data = await services.getUser(currentParam);
+			if (services) {
 
-			let parsedData: ISelectedUser = {
-				user: {
-					title: data.login,
-					image: { url: data.avatar_url, alt: data.login },
-					tag: data.type,
-					url: data.html_url,
-					numericValues: [
-						{ key: 'Repos', value: data.public_repos!},
-						{ key: 'Gists', value: data.public_gists!},
-						{ key: 'Followers', value: data.followers!},
-						{ key: 'Following', value: data.following!},
-					]
-				},
-				repos: (await services.getRepo(currentParam)).map(repo => ({
-					title: {
-						url: repo.html_url,
-						text: repo.name,
-		
+				let data = await services.getUser(currentParam);
+	
+				let parsedData: ISelectedUser = {
+					user: {
+						title: data.login,
+						image: { url: data.avatar_url, alt: data.login },
+						tag: data.type,
+						url: data.html_url,
+						numericValues: [
+							{ key: 'Repos', value: data.public_repos!},
+							{ key: 'Gists', value: data.public_gists!},
+							{ key: 'Followers', value: data.followers!},
+							{ key: 'Following', value: data.following!}
+						]
 					},
-					description: repo.description,
-					footerItems:[
-						{ text: repo.language},
-						{ icon:'star', text: repo.stargazers_count.toString()},
-						{ icon:'fork', text: repo.forks_count.toString()},
-					]
+					repos: (await services.getRepo(currentParam)).map(repo => ({
+						title: {
+							url: repo.html_url,
+							text: repo.name,
+			
+						},
+						description: repo.description,
+						footerItems:[
+							{ text: repo.language},
+							{ icon:'star', text: repo.stargazers_count.toString()},
+							{ icon:'fork', text: repo.forks_count.toString()},
+						]
+	
+					}))
+	
+				};
+	
+				setIsSidebarHidden(false);
+				setSelectedUser(parsedData);
 
-				}))
+			}
 
-			};
-
-			setIsSidebarHidden(false);
-			setSelectedUser(parsedData);
 
 		})();
 

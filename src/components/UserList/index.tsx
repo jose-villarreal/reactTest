@@ -1,5 +1,6 @@
-import { useEffect, useState, ReactElement } from 'react';
-import Services, {IUser} from '../../Services';
+import { useEffect, useState, useContext, ReactElement } from 'react';
+import {IUser} from '../../Services';
+import { ServicesContext } from '../../Contexts';
 
 interface IChildrenProps {
 	users: IUser[]
@@ -10,15 +11,15 @@ interface IChildren {
 }
 
 interface IProps {
-	services: Services;
 	searchValue?: string | null;
 	children: IChildren;
 }
 
 export const UserList: React.FC<IProps> = props => {
 
-	const { services , children, searchValue = null } = props;
+	const { children, searchValue = null } = props;
 	const [users, setUsers] = useState<IUser[]>([]);
+	const services = useContext(ServicesContext);
 
 	useEffect(() => {
 
@@ -26,9 +27,9 @@ export const UserList: React.FC<IProps> = props => {
 			
 			let users: IUser[] = [];
 
-			if (searchValue) users = (await services.searchUser({ q: searchValue })).items;
-			else users = await services.getUsers();
-
+			if (services) 
+				users = (searchValue) ? (await services.searchUser({ q: searchValue })).items : await services.getUsers();
+			
 			setUsers(users);
 
 		})();
