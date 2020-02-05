@@ -32,16 +32,20 @@ export const Main: React.FC<IProps> = (props:IProps) => {
 				{
 					({users}) => {
 
-						return (<GridList>
-							{ users.map((user, index) => {
+						return (
+							<GridList>
+								
+								{ users.map((user, index) => {
 
-									const { login, avatar_url, type } = user;
-									const image = { url: avatar_url, alt: login };
+										const { login, avatar_url, type } = user;
+										const image = { url: avatar_url, alt: login };
 
-									return <Card key={ index } title={ login } tag={ type } url={'/'+login } image={ image }/>;
+										return <Card key={ index } title={ login } tag={ type } url={'/'+login } image={ image }/>;
 
-							}) }
-						</GridList>);
+								}) }
+
+							</GridList>
+						);
 					}
 
 				}
